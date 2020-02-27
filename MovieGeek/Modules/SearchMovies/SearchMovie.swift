@@ -14,9 +14,17 @@ struct SearchMovie: View {
     @ObservedObject private var model = SearchMovieModel()
     
     var body: some View {
-        List(model.movies) { movie in
-            MoviePreviewCell(title: movie.title, stringURL: movie.posterPath)
+        VStack {
+            VStack {
+                Text("Искать фильм")
+                TextField("Enter movie name..", text: $model.searchText)
+            }
+            
+            List(model.movies) { movie in
+                MoviePreviewCell(movie: movie)
+            }
         }
+        
     }
 }
 

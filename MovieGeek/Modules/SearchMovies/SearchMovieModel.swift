@@ -12,10 +12,21 @@ import Combine
 class SearchMovieModel: ObservableObject {
     let apiService = APIService()
     var subscriptions = Set<AnyCancellable>()
+    
+    @Published var searchText = "" {
+        didSet {
+            if self.searchText.count < 1 {
+                self.movies.removeAll()
+            } else {
+                self.getMovies(movieTitle: self.searchText)
+            }
+        }
+    }
+    
     @Published var movies: [Movie] = []
     
-    func getMovies() {
-        apiService.searchMovies(movieName: "Star")?
+    func getMovies(movieTitle: String) {
+        apiService.searchMovies(movieName: movieTitle)?
             .sink(receiveCompletion: { _ in }, receiveValue: { value in
                 self.movies = value.results
             })
@@ -23,7 +34,4 @@ class SearchMovieModel: ObservableObject {
         
     }
     
-    init() {
-        getMovies()
-    }
 }
