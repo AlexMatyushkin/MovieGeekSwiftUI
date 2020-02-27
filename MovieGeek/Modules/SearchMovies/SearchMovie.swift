@@ -15,10 +15,7 @@ struct SearchMovie: View {
     
     var body: some View {
         List(model.movies) { movie in
-            VStack {
-                Text(movie.title)
-                Text(movie.overview!)
-            }
+            MoviePreviewCell(title: movie.title, stringURL: movie.posterPath)
         }
     }
 }
