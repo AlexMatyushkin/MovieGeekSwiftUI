@@ -15,53 +15,58 @@ struct MainChatView: View {
     @ObservedObject private var keyboardObserver = KeyboardObserver()
     
     var body: some View {
-        VStack{
-            List(model.messages) { message in
-                if message.type == .textMessage {
-                    HStack {
-                        if message.router == .outcoming {
-                            Spacer()
+        NavigationView {
+            VStack{
+                List(model.messages) { message in
+                    if message.type == .textMessage {
+                        HStack {
+                            if message.router == .outcoming {
+                                Spacer()
+                            }
+                            TextMessageView(message: message)
                         }
-                        TextMessageView(message: message)
+                    } else {
+                        NavigationLink(destination: AboutMovieView(movie: message.movie)) {
+                            MoviePreviewCell(movie: message.movie)
+                        }
                     }
-                } else {
-                    MoviePreviewCell(movie: message.movie)
-                }
+                    
+                }.onAppear { UITableView.appearance().separatorStyle = .none }
                 
-            }.onAppear { UITableView.appearance().separatorStyle = .none }
-            
-            
-            if !model.isShowTextField {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(model.answers) { answer in
-                            Text(" " + answer.command.description + " ")
-                                .font(.system(size: 20, weight: .semibold, design: .monospaced))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .stroke(Color.white, lineWidth: 1)
-                            )
-                                .cornerRadius(20)
-                                .gesture(
-                                    TapGesture()
-                                        .onEnded { _ in
-                                            self.model.commandRecived(answer.command)
-                                    }
-                            )
+                
+                if !model.isShowTextField {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(model.answers) { answer in
+                                Text(" " + answer.command.description + " ")
+                                    .font(.system(size: 20, weight: .semibold, design: .monospaced))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(Color.white, lineWidth: 1)
+                                )
+                                    .cornerRadius(20)
+                                    .gesture(
+                                        TapGesture()
+                                            .onEnded { _ in
+                                                self.model.commandRecived(answer.command)
+                                        }
+                                )
+                            }
                         }
+                    }.frame(height: 100)
+                } else {
+                    HStack{
+                        TextField("Введите название фильма...", text: $model.textFieldText)
+                        Button(action: {
+                            self.model.searchMovie()
+                        }, label: {
+                            Text("Искать")
+                        })
                     }
-                }.frame(height: 100)
-            } else {
-                HStack{
-                    TextField("Введите название фильма...", text: $model.textFieldText)
-                    Button(action: {
-                        self.model.searchMovie()
-                    }, label: {
-                        Text("Искать")
-                    })
                 }
-            }
-        }.padding(.bottom, keyboardObserver.keyboardHeight)
+            }.padding(.bottom, keyboardObserver.keyboardHeight)
+            .navigationBarTitle("Чат с ботом")
+        }
     }
     
     

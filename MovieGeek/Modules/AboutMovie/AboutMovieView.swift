@@ -12,10 +12,13 @@ struct AboutMovieView: View {
     @ObservedObject var model: AboutMovieModel
     
     var body: some View {
-        Text("")
+        Text("Hello")
+            .onAppear {
+                self.model.fillingModel()
+        }
     }
     
-    init(movie: Movie) {
+    init(movie: Movie?) {
         self.model = AboutMovieModel(movie: movie)
     }
 }

@@ -12,14 +12,30 @@ import Combine
 class AboutMovieModel: ObservableObject {
     let apiService = APIService()
     var subsrcibers = Set<AnyCancellable>()
+    var detailedInfo: DetailedInfo?
     
-    init(movie: Movie) {
+    @Published var title = ""
+    @Published var budget = "0"
+    
+    
+    init(movie: Movie?) {
+        let movieId = movie?.id ?? 0
         
-        apiService.loadDetailedMovieInfo(movieId: String(movie.id))?
-            .sink(receiveCompletion: { _ in},
+        self.apiService.loadDetailedMovieInfo(movieId: String(movieId))?
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .finished: break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            },
                   receiveValue: { detailedInfo in
-                    print(detailedInfo)
+                    self.detailedInfo = detailedInfo
             })
             .store(in: &subsrcibers)
+    }
+    
+    func fillingModel() {
+        
     }
 }

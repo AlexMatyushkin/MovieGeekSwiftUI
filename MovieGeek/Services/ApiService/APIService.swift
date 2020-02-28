@@ -46,12 +46,11 @@ class APIService {
     }
     
     func loadDetailedMovieInfo(movieId: String) -> AnyPublisher<DetailedInfo, Error>? {
-        var components = Endpoint.searchMovies.endpoint
-        
+        var components = Endpoint.detailedInfo.endpoint
+        components.path += "\(movieId)"
         components.queryItems = [
-             URLQueryItem(name: "api_key", value: apiKey),
-             URLQueryItem(name: "language", value: "ru-RU"),
-             URLQueryItem(name: "movie_id", value: movieId)
+            URLQueryItem(name: "api_key", value: apiKey),
+            URLQueryItem(name: "language", value: "ru-RU"),
         ]
         
         guard let url = components.url else { return nil }
