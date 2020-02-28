@@ -30,7 +30,7 @@ class APIService {
         guard let url = components.url else { return nil}
         
         return URLSession.shared.dataTaskPublisher(for: url)
-            .map({ $0.data })
+            .map { $0.data }
             .receive(on: DispatchQueue.main)
             .decode(type: Movies.self, decoder: JSONDecoder())
             .catch { _ in Empty<Movies, Error>() }
@@ -42,6 +42,25 @@ class APIService {
             .map { $0.data}
             .receive(on: DispatchQueue.main)
             .catch { _ in Empty<Data, Error>() }
+            .eraseToAnyPublisher()
+    }
+    
+    func loadDetailedMovieInfo(movieId: String) -> AnyPublisher<DetailedInfo, Error>? {
+        var components = Endpoint.searchMovies.endpoint
+        
+        components.queryItems = [
+             URLQueryItem(name: "api_key", value: apiKey),
+             URLQueryItem(name: "language", value: "ru-RU"),
+             URLQueryItem(name: "movie_id", value: movieId)
+        ]
+        
+        guard let url = components.url else { return nil }
+        
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map { $0.data }
+            .receive(on: DispatchQueue.main)
+            .decode(type: DetailedInfo.self, decoder: JSONDecoder())
+            .catch { _ in Empty<DetailedInfo, Error>() }
             .eraseToAnyPublisher()
     }
 }

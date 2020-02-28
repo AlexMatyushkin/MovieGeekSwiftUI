@@ -18,6 +18,13 @@
 		F6896E732407AAE5006046DC /* ApiServiceEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6896E722407AAE5006046DC /* ApiServiceEntities.swift */; };
 		F6896E752407AC09006046DC /* MoviePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6896E742407AC09006046DC /* MoviePreviewCell.swift */; };
 		F6896E782407AD28006046DC /* MoviePreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6896E772407AD28006046DC /* MoviePreviewModel.swift */; };
+		F6896EF52407EF98006046DC /* AboutMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6896EF42407EF98006046DC /* AboutMovieView.swift */; };
+		F6896EF72407F3C2006046DC /* AboutMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6896EF62407F3C2006046DC /* AboutMovieModel.swift */; };
+		F6896EFA2408DE10006046DC /* MainChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6896EF92408DE10006046DC /* MainChatView.swift */; };
+		F6896EFC2408DE21006046DC /* MainChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6896EFB2408DE21006046DC /* MainChatViewModel.swift */; };
+		F6896F052408E1DE006046DC /* TextMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6896F042408E1DE006046DC /* TextMessageView.swift */; };
+		F6896F072408E315006046DC /* MainChatEntites.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6896F062408E315006046DC /* MainChatEntites.swift */; };
+		F6896F0E24090649006046DC /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6896F0D24090649006046DC /* KeyboardObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +41,13 @@
 		F6896E722407AAE5006046DC /* ApiServiceEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceEntities.swift; sourceTree = "<group>"; };
 		F6896E742407AC09006046DC /* MoviePreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePreviewCell.swift; sourceTree = "<group>"; };
 		F6896E772407AD28006046DC /* MoviePreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePreviewModel.swift; sourceTree = "<group>"; };
+		F6896EF42407EF98006046DC /* AboutMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMovieView.swift; sourceTree = "<group>"; };
+		F6896EF62407F3C2006046DC /* AboutMovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMovieModel.swift; sourceTree = "<group>"; };
+		F6896EF92408DE10006046DC /* MainChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatView.swift; sourceTree = "<group>"; };
+		F6896EFB2408DE21006046DC /* MainChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatViewModel.swift; sourceTree = "<group>"; };
+		F6896F042408E1DE006046DC /* TextMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageView.swift; sourceTree = "<group>"; };
+		F6896F062408E315006046DC /* MainChatEntites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatEntites.swift; sourceTree = "<group>"; };
+		F6896F0D24090649006046DC /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +80,7 @@
 		F6896E4824069DE3006046DC /* MovieGeek */ = {
 			isa = PBXGroup;
 			children = (
+				F6896F0C24090630006046DC /* Support */,
 				F6896E6E2406A04F006046DC /* Services */,
 				F6896E6824069F73006046DC /* Modules */,
 				F6896E6124069F24006046DC /* Core */,
@@ -97,6 +112,8 @@
 		F6896E6824069F73006046DC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F6896EF82408DDEF006046DC /* MainChat */,
+				F6896EF32407EF77006046DC /* AboutMovie */,
 				F6896E6924069F93006046DC /* SearchMovies */,
 			);
 			path = Modules;
@@ -132,10 +149,62 @@
 		F6896E762407AD14006046DC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				F6896E742407AC09006046DC /* MoviePreviewCell.swift */,
-				F6896E772407AD28006046DC /* MoviePreviewModel.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F6896EF32407EF77006046DC /* AboutMovie */ = {
+			isa = PBXGroup;
+			children = (
+				F6896EF42407EF98006046DC /* AboutMovieView.swift */,
+				F6896EF62407F3C2006046DC /* AboutMovieModel.swift */,
+			);
+			path = AboutMovie;
+			sourceTree = "<group>";
+		};
+		F6896EF82408DDEF006046DC /* MainChat */ = {
+			isa = PBXGroup;
+			children = (
+				F6896EFF2408E04B006046DC /* MessagesCells */,
+				F6896EF92408DE10006046DC /* MainChatView.swift */,
+				F6896EFB2408DE21006046DC /* MainChatViewModel.swift */,
+				F6896F062408E315006046DC /* MainChatEntites.swift */,
+			);
+			path = MainChat;
+			sourceTree = "<group>";
+		};
+		F6896EFF2408E04B006046DC /* MessagesCells */ = {
+			isa = PBXGroup;
+			children = (
+				F6896F0B2408F9C6006046DC /* PreviewMovie */,
+				F6896F0A2408F9BE006046DC /* TextMessage */,
+			);
+			path = MessagesCells;
+			sourceTree = "<group>";
+		};
+		F6896F0A2408F9BE006046DC /* TextMessage */ = {
+			isa = PBXGroup;
+			children = (
+				F6896F042408E1DE006046DC /* TextMessageView.swift */,
+			);
+			path = TextMessage;
+			sourceTree = "<group>";
+		};
+		F6896F0B2408F9C6006046DC /* PreviewMovie */ = {
+			isa = PBXGroup;
+			children = (
+				F6896E772407AD28006046DC /* MoviePreviewModel.swift */,
+				F6896E742407AC09006046DC /* MoviePreviewCell.swift */,
+			);
+			path = PreviewMovie;
+			sourceTree = "<group>";
+		};
+		F6896F0C24090630006046DC /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				F6896F0D24090649006046DC /* KeyboardObserver.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,13 +278,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6896EFC2408DE21006046DC /* MainChatViewModel.swift in Sources */,
+				F6896F052408E1DE006046DC /* TextMessageView.swift in Sources */,
 				F6896E752407AC09006046DC /* MoviePreviewCell.swift in Sources */,
 				F6896E6D24069FF0006046DC /* SearchMovieModel.swift in Sources */,
 				F6896E702406A063006046DC /* APIService.swift in Sources */,
+				F6896EFA2408DE10006046DC /* MainChatView.swift in Sources */,
 				F6896E6724069F24006046DC /* SceneDelegate.swift in Sources */,
 				F6896E732407AAE5006046DC /* ApiServiceEntities.swift in Sources */,
+				F6896EF52407EF98006046DC /* AboutMovieView.swift in Sources */,
+				F6896F072408E315006046DC /* MainChatEntites.swift in Sources */,
+				F6896F0E24090649006046DC /* KeyboardObserver.swift in Sources */,
 				F6896E782407AD28006046DC /* MoviePreviewModel.swift in Sources */,
 				F6896E6624069F24006046DC /* AppDelegate.swift in Sources */,
+				F6896EF72407F3C2006046DC /* AboutMovieModel.swift in Sources */,
 				F6896E6B24069FAD006046DC /* SearchMovie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,23 +19,23 @@ struct MoviePreviewCell: View {
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
             VStack{
-                Spacer()
-                Image.init(uiImage: model.image).resizable()
-                    .frame(width: 150, height: 200, alignment: .center)
-                Spacer()
+                HStack{
+                    Spacer()
+                    Image.init(uiImage: model.image).resizable()
+                        .frame(width: 150, height: 200, alignment: .center)
+                    Spacer()
+                }
                 if model.overview != "" {
                     Text("Краткое описание").fontWeight(.bold)
                     Text(model.overview)
-                } else {
-                    Spacer()
                 }
                 
             }
-            
         }
     }
-    
-    init(movie: Movie) {
+
+
+    init(movie: Movie?) {
         self.model = MoviePreviewModel(movie: movie)
     }
 }

@@ -18,7 +18,8 @@ class MoviePreviewModel: ObservableObject {
     let apiService = APIService()
     var subsribers = Set<AnyCancellable>()
     
-    init(movie: Movie) {
+    init(movie: Movie?) {
+        guard let movie = movie else { return }
         if let posterPath = movie.posterPath {
             if let url = URL(string: "https://image.tmdb.org/t/p/w500" + posterPath) {
                 apiService.loadImage(url: url).sink(receiveCompletion: { _ in }, receiveValue: { data in
