@@ -22,7 +22,8 @@ class MoviePreviewModel: ObservableObject {
         guard let movie = movie else { return }
         if let posterPath = movie.posterPath {
             if let url = URL(string: "https://image.tmdb.org/t/p/w500" + posterPath) {
-                apiService.loadImage(url: url).sink(receiveCompletion: { _ in }, receiveValue: { data in
+                apiService.loadImage(url: url).sink(receiveCompletion: { _ in }, receiveValue: { [weak self] data in
+                    guard let self = self else { return }
                     if let image = UIImage(data: data) {
                         self.image = image
                     }

@@ -27,7 +27,8 @@ class SearchMovieModel: ObservableObject {
     
     func getMovies(movieTitle: String) {
         apiService.searchMovies(movieName: movieTitle)?
-            .sink(receiveCompletion: { _ in }, receiveValue: { value in
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] value in
+                guard let self = self else { return }
                 self.movies = value.results
             })
             .store(in: &subscriptions)

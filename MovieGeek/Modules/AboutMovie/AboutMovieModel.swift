@@ -29,7 +29,8 @@ class AboutMovieModel: ObservableObject {
                     print(error.localizedDescription)
                 }
             },
-                  receiveValue: { detailedInfo in
+                  receiveValue: { [weak self] detailedInfo in
+                    guard let self = self else { return }
                     self.detailedInfo = detailedInfo
             })
             .store(in: &subsrcibers)
